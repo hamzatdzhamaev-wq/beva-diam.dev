@@ -1027,6 +1027,8 @@
                 if (result.success) {
                     alert('✓ Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet.');
                     e.target.reset();
+                    // Redirect to home screen
+                    document.querySelector('.floating-btn').click();
                 } else {
                     alert('❌ Fehler beim Senden der Anfrage. Bitte versuchen Sie es erneut.');
                 }
