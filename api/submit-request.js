@@ -36,13 +36,19 @@ export default async function handler(req, res) {
                 name TEXT NOT NULL,
                 email TEXT NOT NULL,
                 phone TEXT,
-                project_type TEXT NOT NULL,
-                budget TEXT NOT NULL,
-                start_date TEXT NOT NULL,
                 description TEXT NOT NULL,
                 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         `;
+
+        // Add new columns if they don't exist (for migration)
+        try {
+            await sql`ALTER TABLE requests ADD COLUMN IF NOT EXISTS project_type TEXT`;
+            await sql`ALTER TABLE requests ADD COLUMN IF NOT EXISTS budget TEXT`;
+            await sql`ALTER TABLE requests ADD COLUMN IF NOT EXISTS start_date TEXT`;
+        } catch (e) {
+            // Columns might already exist, ignore error
+        }
 
         // Insert new request
         const result = await sql`
