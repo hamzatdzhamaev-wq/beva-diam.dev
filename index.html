@@ -1416,20 +1416,33 @@
         function checkOverflow() {
             const formContainer = document.querySelector('.form-container');
             if (formContainer) {
-                const hasOverflow = formContainer.scrollHeight > formContainer.clientHeight;
-                formContainer.style.overflowY = hasOverflow ? 'auto' : 'hidden';
+                // Force reflow to get accurate measurements
+                formContainer.style.overflowY = 'hidden';
+
+                // Wait for next frame to measure
+                requestAnimationFrame(() => {
+                    const hasOverflow = formContainer.scrollHeight > formContainer.clientHeight;
+                    console.log('Overflow check:', {
+                        scrollHeight: formContainer.scrollHeight,
+                        clientHeight: formContainer.clientHeight,
+                        hasOverflow: hasOverflow
+                    });
+                    formContainer.style.overflowY = hasOverflow ? 'auto' : 'hidden';
+                });
             }
         }
 
         // Check overflow on load, resize, and when form becomes visible
-        window.addEventListener('load', checkOverflow);
+        window.addEventListener('load', () => {
+            setTimeout(checkOverflow, 200);
+        });
         window.addEventListener('resize', checkOverflow);
 
         // Observe when form becomes visible
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.target.classList.contains('visible')) {
-                    setTimeout(checkOverflow, 100);
+                    setTimeout(checkOverflow, 150);
                 }
             });
         });
