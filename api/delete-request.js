@@ -1,8 +1,7 @@
 // Vercel Serverless Function - DELETE endpoint to remove a request
-const fs = require('fs');
-const path = require('path');
+import { neon } from '@neondatabase/serverless';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
     // Set CORS headers
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -26,27 +25,19 @@ module.exports = async (req, res) => {
             return res.status(400).json({ error: 'Request ID ist erforderlich' });
         }
 
-        // Path to data file
-        const dataFile = path.join('/tmp', 'data', 'requests.json');
+        // Connect to the Neon database
+        const sql = neon(process.env.DATABASE_URL);
 
-        // Read existing requests
-        if (!fs.existsSync(dataFile)) {
-            return res.status(404).json({ error: 'Keine Anfragen gefunden' });
-        }
+        // Delete the request
+        const result = await sql`
+            DELETE FROM requests
+            WHERE id = ${parseInt(id)}
+            RETURNING id
+        `;
 
-        const data = fs.readFileSync(dataFile, 'utf8');
-        let requests = JSON.parse(data);
-
-        // Find and remove the request
-        const initialLength = requests.length;
-        requests = requests.filter(req => req.id !== id);
-
-        if (requests.length === initialLength) {
+        if (result.length === 0) {
             return res.status(404).json({ error: 'Anfrage nicht gefunden' });
         }
-
-        // Save updated requests
-        fs.writeFileSync(dataFile, JSON.stringify(requests, null, 2));
 
         return res.status(200).json({
             success: true,
@@ -57,4 +48,4 @@ module.exports = async (req, res) => {
         console.error('Error deleting request:', error);
         return res.status(500).json({ error: 'Serverfehler beim Löschen der Anfrage' });
     }
-};
+}

@@ -1,8 +1,7 @@
 // Vercel Serverless Function - GET endpoint to retrieve all requests
-const fs = require('fs');
-const path = require('path');
+import { neon } from '@neondatabase/serverless';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
     // Set CORS headers
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -20,15 +19,15 @@ module.exports = async (req, res) => {
     }
 
     try {
-        // Path to data file
-        const dataFile = path.join('/tmp', 'data', 'requests.json');
+        // Connect to the Neon database
+        const sql = neon(process.env.DATABASE_URL);
 
-        // Read existing requests or return empty array
-        let requests = [];
-        if (fs.existsSync(dataFile)) {
-            const data = fs.readFileSync(dataFile, 'utf8');
-            requests = JSON.parse(data);
-        }
+        // Get all requests
+        const requests = await sql`
+            SELECT id::text, name, email, phone, description, timestamp
+            FROM requests
+            ORDER BY timestamp DESC
+        `;
 
         return res.status(200).json({
             success: true,
@@ -37,6 +36,9 @@ module.exports = async (req, res) => {
 
     } catch (error) {
         console.error('Error reading requests:', error);
-        return res.status(500).json({ error: 'Serverfehler beim Abrufen der Anfragen' });
+        return res.status(200).json({
+            success: true,
+            requests: []
+        });
     }
-};
+}

@@ -1,8 +1,7 @@
 // Vercel Serverless Function - POST endpoint to save contact requests
-const fs = require('fs');
-const path = require('path');
+import { neon } from '@neondatabase/serverless';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
     // Set CORS headers
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -27,46 +26,36 @@ module.exports = async (req, res) => {
             return res.status(400).json({ error: 'Name, Email und Beschreibung sind erforderlich' });
         }
 
-        // Create request object with timestamp
-        const newRequest = {
-            id: Date.now().toString(),
-            name,
-            email,
-            phone: phone || '',
-            description,
-            timestamp: new Date().toISOString()
-        };
+        // Connect to the Neon database
+        const sql = neon(process.env.DATABASE_URL);
 
-        // Path to data file
-        const dataDir = path.join('/tmp', 'data');
-        const dataFile = path.join(dataDir, 'requests.json');
+        // Create table if it doesn't exist
+        await sql`
+            CREATE TABLE IF NOT EXISTS requests (
+                id SERIAL PRIMARY KEY,
+                name TEXT NOT NULL,
+                email TEXT NOT NULL,
+                phone TEXT,
+                description TEXT NOT NULL,
+                timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        `;
 
-        // Create directory if it doesn't exist
-        if (!fs.existsSync(dataDir)) {
-            fs.mkdirSync(dataDir, { recursive: true });
-        }
-
-        // Read existing requests or create new array
-        let requests = [];
-        if (fs.existsSync(dataFile)) {
-            const data = fs.readFileSync(dataFile, 'utf8');
-            requests = JSON.parse(data);
-        }
-
-        // Add new request
-        requests.push(newRequest);
-
-        // Save to file
-        fs.writeFileSync(dataFile, JSON.stringify(requests, null, 2));
+        // Insert new request
+        const result = await sql`
+            INSERT INTO requests (name, email, phone, description)
+            VALUES (${name}, ${email}, ${phone || ''}, ${description})
+            RETURNING id, name, email, phone, description, timestamp
+        `;
 
         return res.status(200).json({
             success: true,
             message: 'Anfrage erfolgreich gespeichert',
-            request: newRequest
+            request: result[0]
         });
 
     } catch (error) {
         console.error('Error saving request:', error);
         return res.status(500).json({ error: 'Serverfehler beim Speichern der Anfrage' });
     }
-};
+}
