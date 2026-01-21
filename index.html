@@ -1051,10 +1051,7 @@
                 const result = await response.json();
 
                 if (result.success) {
-                    alert('✓ Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet.');
-                    e.target.reset();
-
-                    // CRT TV Off Effect
+                    // CRT TV Off Effect - Start immediately
                     const content = document.querySelector('.content');
                     const formContainer = document.querySelector('.form-container');
 
@@ -1065,6 +1062,7 @@
                     setTimeout(() => {
                         content.classList.remove('visible', 'crt-off');
                         formContainer.classList.remove('crt-off');
+                        e.target.reset();
                         document.querySelector('.home-btn').click();
                     }, 500);
                 } else {
