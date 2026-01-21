@@ -238,20 +238,37 @@
             50% { background-position: 100% 50%; }
         }
 
-        /* Custom Scrollbar for Form Container */
+        /* Custom Scrollbar for Form Container - Only visible when needed */
+        .form-container {
+            scrollbar-width: thin;
+            scrollbar-color: transparent transparent;
+        }
+
+        .form-container:hover {
+            scrollbar-color: rgba(98, 0, 234, 0.6) rgba(0, 0, 0, 0.2);
+        }
+
         .form-container::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         .form-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .form-container::-webkit-scrollbar-thumb {
+            background: transparent;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .form-container:hover::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.2);
             border-radius: 10px;
         }
 
-        .form-container::-webkit-scrollbar-thumb {
+        .form-container:hover::-webkit-scrollbar-thumb {
             background: linear-gradient(135deg, #6200ea, #b830d1);
-            border-radius: 10px;
-            transition: all 0.3s ease;
         }
 
         .form-container::-webkit-scrollbar-thumb:hover {
