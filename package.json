@@ -1,0 +1,11 @@
+{
+  "name": "beva-diam-website",
+  "version": "1.0.0",
+  "description": "Beva Diamond Website with Admin Panel",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
