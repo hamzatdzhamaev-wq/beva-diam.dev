@@ -170,6 +170,32 @@
             pointer-events: all;
         }
 
+        /* CRT TV Off Effect */
+        @keyframes crtOff {
+            0% {
+                transform: scaleY(1) scaleX(1);
+                filter: brightness(1);
+            }
+            60% {
+                transform: scaleY(0.01) scaleX(1);
+                filter: brightness(10);
+            }
+            100% {
+                transform: scaleY(0) scaleX(0);
+                filter: brightness(50);
+                opacity: 0;
+            }
+        }
+
+        .content.crt-off {
+            animation: crtOff 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+        }
+
+        .form-container.crt-off {
+            transform-origin: center center;
+        }
+
         .form-container {
             background:
                 radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
@@ -1027,8 +1053,20 @@
                 if (result.success) {
                     alert('✓ Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet.');
                     e.target.reset();
-                    // Redirect to home screen
-                    document.querySelector('.floating-btn').click();
+
+                    // CRT TV Off Effect
+                    const content = document.querySelector('.content');
+                    const formContainer = document.querySelector('.form-container');
+
+                    content.classList.add('crt-off');
+                    formContainer.classList.add('crt-off');
+
+                    // Wait for animation to finish, then redirect to home
+                    setTimeout(() => {
+                        content.classList.remove('visible', 'crt-off');
+                        formContainer.classList.remove('crt-off');
+                        document.querySelector('.home-btn').click();
+                    }, 500);
                 } else {
                     alert('❌ Fehler beim Senden der Anfrage. Bitte versuchen Sie es erneut.');
                 }
