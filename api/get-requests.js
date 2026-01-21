@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
         // Get all requests
         const requests = await sql`
-            SELECT id::text, name, email, phone, description, timestamp
+            SELECT id::text, name, email, phone, project_type, budget, start_date, description, timestamp
             FROM requests
             ORDER BY timestamp DESC
         `;

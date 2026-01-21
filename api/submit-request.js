@@ -19,11 +19,11 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { name, email, phone, description } = req.body;
+        const { name, email, phone, projectType, budget, startDate, description } = req.body;
 
         // Validate required fields
-        if (!name || !email || !description) {
-            return res.status(400).json({ error: 'Name, Email und Beschreibung sind erforderlich' });
+        if (!name || !email || !description || !projectType || !budget || !startDate) {
+            return res.status(400).json({ error: 'Alle Pflichtfelder müssen ausgefüllt werden' });
         }
 
         // Connect to the Neon database
@@ -36,6 +36,9 @@ export default async function handler(req, res) {
                 name TEXT NOT NULL,
                 email TEXT NOT NULL,
                 phone TEXT,
+                project_type TEXT NOT NULL,
+                budget TEXT NOT NULL,
+                start_date TEXT NOT NULL,
                 description TEXT NOT NULL,
                 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
@@ -43,9 +46,9 @@ export default async function handler(req, res) {
 
         // Insert new request
         const result = await sql`
-            INSERT INTO requests (name, email, phone, description)
-            VALUES (${name}, ${email}, ${phone || ''}, ${description})
-            RETURNING id, name, email, phone, description, timestamp
+            INSERT INTO requests (name, email, phone, project_type, budget, start_date, description)
+            VALUES (${name}, ${email}, ${phone || ''}, ${projectType}, ${budget}, ${startDate}, ${description})
+            RETURNING id, name, email, phone, project_type, budget, start_date, description, timestamp
         `;
 
         return res.status(200).json({

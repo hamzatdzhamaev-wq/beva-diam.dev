@@ -310,6 +310,75 @@
             min-height: 120px;
         }
 
+        select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: 'Segoe UI', sans-serif;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 3px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            cursor: pointer;
+        }
+
+        select option {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: rgba(98, 0, 234, 0.8);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 6px 20px rgba(98, 0, 234, 0.3), 0 0 0 4px rgba(98, 0, 234, 0.15), inset 0 1px 3px rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        input[type="date"] {
+            color-scheme: dark;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .checkbox-label:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(98, 0, 234, 0.5);
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: #6200ea;
+        }
+
+        .checkbox-label input[type="checkbox"]:checked + span {
+            color: #b830d1;
+            font-weight: 600;
+        }
+
         .submit-btn {
             width: 100%;
             padding: 18px 24px;
@@ -477,6 +546,15 @@
                 font-size: 11px;
                 bottom: 30px;
             }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-label {
+                font-size: 13px;
+                padding: 10px 14px;
+            }
         }
     </style>
 </head>
@@ -520,6 +598,49 @@
                 <div class="form-group">
                     <label>Telefon (optional)</label>
                     <input type="tel" name="phone" placeholder="+49 123 456789">
+                </div>
+
+                <div class="form-group">
+                    <label>Projekt-Art <span class="required">*</span></label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="projectType" value="Webseite">
+                            <span>Webseite</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="projectType" value="Online-Shop">
+                            <span>Online-Shop</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="projectType" value="App">
+                            <span>App</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="projectType" value="Logo/Branding">
+                            <span>Logo/Branding</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="projectType" value="SEO">
+                            <span>SEO</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Budget <span class="required">*</span></label>
+                    <select name="budget" required>
+                        <option value="">Bitte wählen...</option>
+                        <option value="< 2.000€">< 2.000€</option>
+                        <option value="2.000€ - 5.000€">2.000€ - 5.000€</option>
+                        <option value="5.000€ - 10.000€">5.000€ - 10.000€</option>
+                        <option value="10.000€ - 20.000€">10.000€ - 20.000€</option>
+                        <option value="> 20.000€">> 20.000€</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Gewünschter Start-Termin <span class="required">*</span></label>
+                    <input type="date" name="startDate" required>
                 </div>
 
                 <div class="form-group">
@@ -1031,10 +1152,23 @@
         document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            // Get selected project types
+            const projectTypes = Array.from(document.querySelectorAll('input[name="projectType"]:checked'))
+                .map(cb => cb.value);
+
+            // Validate at least one project type is selected
+            if (projectTypes.length === 0) {
+                alert('⚠️ Bitte wählen Sie mindestens eine Projekt-Art aus.');
+                return;
+            }
+
             const formData = {
                 name: document.querySelector('input[name="name"]').value,
                 email: document.querySelector('input[name="email"]').value,
                 phone: document.querySelector('input[name="phone"]').value,
+                projectType: projectTypes.join(', '),
+                budget: document.querySelector('select[name="budget"]').value,
+                startDate: document.querySelector('input[name="startDate"]').value,
                 description: document.querySelector('textarea[name="description"]').value
             };
 
@@ -1087,6 +1221,10 @@
                 placeholderEmail: 'ihre@email.de',
                 labelPhone: 'Telefon (optional)',
                 placeholderPhone: '+49 123 456789',
+                labelProjectType: 'Projekt-Art',
+                labelBudget: 'Budget',
+                labelStartDate: 'Gewünschter Start-Termin',
+                budgetPlaceholder: 'Bitte wählen...',
                 labelDescription: 'Projektbeschreibung',
                 placeholderDescription: 'Beschreiben Sie Ihr Projekt und Ihre Anforderungen...',
                 submitBtn: 'Anfrage senden',
@@ -1103,6 +1241,10 @@
                 placeholderEmail: 'your@email.com',
                 labelPhone: 'Phone (optional)',
                 placeholderPhone: '+1 234 567890',
+                labelProjectType: 'Project Type',
+                labelBudget: 'Budget',
+                labelStartDate: 'Desired Start Date',
+                budgetPlaceholder: 'Please select...',
                 labelDescription: 'Project Description',
                 placeholderDescription: 'Describe your project and requirements...',
                 submitBtn: 'Send Request',
@@ -1119,6 +1261,10 @@
                 placeholderEmail: 'ваша@почта.ru',
                 labelPhone: 'Телефон (необязательно)',
                 placeholderPhone: '+7 123 456789',
+                labelProjectType: 'Тип проекта',
+                labelBudget: 'Бюджет',
+                labelStartDate: 'Желаемая дата начала',
+                budgetPlaceholder: 'Пожалуйста, выберите...',
                 labelDescription: 'Описание проекта',
                 placeholderDescription: 'Опишите ваш проект и требования...',
                 submitBtn: 'Отправить запрос',
@@ -1142,21 +1288,34 @@
             document.querySelector('h1').textContent = t.title;
             document.querySelector('.subtitle').textContent = t.subtitle;
 
-            // Update labels and placeholders
-            const labels = document.querySelectorAll('label');
-            const inputs = document.querySelectorAll('input, textarea');
+            // Update all form fields by targeting their parent labels
+            const formGroups = document.querySelectorAll('.form-group');
 
-            labels[0].innerHTML = `${t.labelName} <span class="required">*</span>`;
-            inputs[0].placeholder = t.placeholderName;
+            // Name field
+            formGroups[0].querySelector('label').innerHTML = `${t.labelName} <span class="required">*</span>`;
+            formGroups[0].querySelector('input').placeholder = t.placeholderName;
 
-            labels[1].innerHTML = `${t.labelEmail} <span class="required">*</span>`;
-            inputs[1].placeholder = t.placeholderEmail;
+            // Email field
+            formGroups[1].querySelector('label').innerHTML = `${t.labelEmail} <span class="required">*</span>`;
+            formGroups[1].querySelector('input').placeholder = t.placeholderEmail;
 
-            labels[2].textContent = t.labelPhone;
-            inputs[2].placeholder = t.placeholderPhone;
+            // Phone field
+            formGroups[2].querySelector('label').textContent = t.labelPhone;
+            formGroups[2].querySelector('input').placeholder = t.placeholderPhone;
 
-            labels[3].innerHTML = `${t.labelDescription} <span class="required">*</span>`;
-            inputs[3].placeholder = t.placeholderDescription;
+            // Project Type field
+            formGroups[3].querySelector('label').innerHTML = `${t.labelProjectType} <span class="required">*</span>`;
+
+            // Budget field
+            formGroups[4].querySelector('label').innerHTML = `${t.labelBudget} <span class="required">*</span>`;
+            formGroups[4].querySelector('select option[value=""]').textContent = t.budgetPlaceholder;
+
+            // Start Date field
+            formGroups[5].querySelector('label').innerHTML = `${t.labelStartDate} <span class="required">*</span>`;
+
+            // Description field
+            formGroups[6].querySelector('label').innerHTML = `${t.labelDescription} <span class="required">*</span>`;
+            formGroups[6].querySelector('textarea').placeholder = t.placeholderDescription;
 
             document.querySelector('.submit-btn').innerHTML = `${t.submitBtn}<span style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:20px;">→</span>`;
         }

@@ -272,6 +272,18 @@
                                     <span class="info-value"><a href="tel:${request.phone}" style="color: #6200ea;">${request.phone}</a></span>
                                 </div>
                                 ` : ''}
+                                <div class="info-row">
+                                    <span class="info-label">Projekt-Art:</span>
+                                    <span class="info-value">${request.project_type || 'N/A'}</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Budget:</span>
+                                    <span class="info-value">${request.budget || 'N/A'}</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Start-Termin:</span>
+                                    <span class="info-value">${request.start_date || 'N/A'}</span>
+                                </div>
                             </div>
                             <div class="request-description">
                                 <strong>Projektbeschreibung:</strong><br>
