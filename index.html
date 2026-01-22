@@ -205,6 +205,36 @@
             transform: rotate(90deg);
         }
 
+        /* Form Close Button */
+        .form-close-btn {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-close-btn:hover {
+            background: rgba(255, 0, 0, 0.3);
+            transform: translateX(-50%) rotate(90deg) scale(1.1);
+        }
+
         /* Language Buttons */
         .language-switcher {
             position: fixed;
@@ -822,6 +852,13 @@
                 right: 15px;
             }
 
+            .form-close-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+                bottom: 30px;
+            }
+
             .language-switcher {
                 top: 20px;
                 right: 20px;
@@ -891,6 +928,10 @@
 
     <button class="home-btn" style="opacity: 0; pointer-events: none;">
         HOME
+    </button>
+
+    <button class="form-close-btn">
+        ×
     </button>
 
     <div class="content">
@@ -1390,7 +1431,7 @@
         document.querySelector('.floating-btn').addEventListener('click', (e) => {
             e.preventDefault();
 
-            // Hide CTA button container, show HOME button
+            // Hide CTA button container, show Close button
             e.target.parentElement.style.opacity = '0';
             e.target.parentElement.style.pointerEvents = 'none';
 
@@ -1398,8 +1439,9 @@
             document.querySelector('.about-btn').style.opacity = '0';
             document.querySelector('.about-btn').style.pointerEvents = 'none';
 
-            document.querySelector('.home-btn').style.opacity = '1';
-            document.querySelector('.home-btn').style.pointerEvents = 'all';
+            // Show Form Close button instead of HOME button
+            document.querySelector('.form-close-btn').style.opacity = '1';
+            document.querySelector('.form-close-btn').style.pointerEvents = 'all';
 
             // Start Animation
             const startTime = Date.now();
@@ -1437,6 +1479,50 @@
             e.preventDefault();
 
             // Hide HOME button, show CTA button
+            e.target.style.opacity = '0';
+            e.target.style.pointerEvents = 'none';
+
+            document.querySelector('.floating-btn').parentElement.style.opacity = '1';
+            document.querySelector('.floating-btn').parentElement.style.pointerEvents = 'all';
+
+            // Show About button
+            document.querySelector('.about-btn').style.opacity = '1';
+            document.querySelector('.about-btn').style.pointerEvents = 'all';
+
+            // Hide form
+            document.querySelector('.content').classList.remove('visible');
+
+            // Start Animation
+            const startTime = Date.now();
+            const duration = 1000; // 1 second
+            const startX = diamond.position.x;
+            const targetX = 0; // Position in center
+
+            function animateTransition() {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Easing function (ease-in-out)
+                const eased = progress < 0.5
+                    ? 2 * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+                // Move diamond back to center
+                diamond.position.x = startX + (targetX - startX) * eased;
+
+                if (progress < 1) {
+                    requestAnimationFrame(animateTransition);
+                }
+            }
+
+            animateTransition();
+        });
+
+        // Form Close Button Click Animation
+        document.querySelector('.form-close-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Hide Close button, show CTA button
             e.target.style.opacity = '0';
             e.target.style.pointerEvents = 'none';
 
