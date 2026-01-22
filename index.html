@@ -358,10 +358,14 @@
         }
 
         input:focus, textarea:focus {
-            outline: none;
-            border-color: rgba(98, 0, 234, 0.8);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 6px 20px rgba(98, 0, 234, 0.3), 0 0 0 4px rgba(98, 0, 234, 0.15), inset 0 1px 3px rgba(255, 255, 255, 0.2);
+            outline: none !important;
+            border-color: rgba(98, 0, 234, 0.9);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow:
+                0 0 0 3px rgba(98, 0, 234, 0.3),
+                0 0 20px rgba(98, 0, 234, 0.4),
+                0 8px 25px rgba(98, 0, 234, 0.3),
+                inset 0 1px 3px rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
 
@@ -391,10 +395,14 @@
         }
 
         select:focus {
-            outline: none;
-            border-color: rgba(98, 0, 234, 0.8);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 6px 20px rgba(98, 0, 234, 0.3), 0 0 0 4px rgba(98, 0, 234, 0.15), inset 0 1px 3px rgba(255, 255, 255, 0.2);
+            outline: none !important;
+            border-color: rgba(98, 0, 234, 0.9);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow:
+                0 0 0 3px rgba(98, 0, 234, 0.3),
+                0 0 20px rgba(98, 0, 234, 0.4),
+                0 8px 25px rgba(98, 0, 234, 0.3),
+                inset 0 1px 3px rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
 
@@ -434,6 +442,11 @@
             margin-right: 7px;
             cursor: pointer;
             accent-color: #6200ea;
+        }
+
+        .checkbox-label input[type="checkbox"]:focus {
+            outline: none !important;
+            box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.3);
         }
 
         .checkbox-label input[type="checkbox"]:checked + span {
