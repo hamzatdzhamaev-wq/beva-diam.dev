@@ -207,17 +207,15 @@
 
         /* Form Close Button */
         .form-close-btn {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1001;
+            position: absolute;
+            top: 20px;
+            right: 20px;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: none;
             color: white;
             font-size: 24px;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -226,13 +224,12 @@
             justify-content: center;
             opacity: 0;
             pointer-events: none;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            z-index: 10;
         }
 
         .form-close-btn:hover {
             background: rgba(255, 0, 0, 0.3);
-            transform: translateX(-50%) rotate(90deg) scale(1.1);
+            transform: rotate(90deg);
         }
 
         /* Language Buttons */
@@ -853,10 +850,11 @@
             }
 
             .form-close-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 22px;
-                bottom: 30px;
+                width: 35px;
+                height: 35px;
+                font-size: 20px;
+                top: 15px;
+                right: 15px;
             }
 
             .language-switcher {
@@ -930,12 +928,12 @@
         HOME
     </button>
 
-    <button class="form-close-btn">
-        ×
-    </button>
-
     <div class="content">
         <div class="form-container">
+            <button class="form-close-btn">
+                ×
+            </button>
+
             <h1>Webseite erstellen lassen</h1>
             <p class="subtitle">Professionelles Webdesign für Ihr Unternehmen</p>
 
