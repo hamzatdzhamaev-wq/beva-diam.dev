@@ -1784,6 +1784,10 @@
             aboutBtn.style.opacity = '0';
             aboutBtn.style.pointerEvents = 'none';
 
+            // Hide Floating CTA button
+            document.querySelector('.floating-btn').parentElement.style.opacity = '0';
+            document.querySelector('.floating-btn').parentElement.style.pointerEvents = 'none';
+
             // Move diamond up
             if (diamond) {
                 const moveUp = setInterval(() => {
@@ -1810,6 +1814,10 @@
                 aboutBtn.style.opacity = '1';
                 aboutBtn.style.pointerEvents = 'all';
             }, 300);
+
+            // Show Floating CTA button again
+            document.querySelector('.floating-btn').parentElement.style.opacity = '1';
+            document.querySelector('.floating-btn').parentElement.style.pointerEvents = 'all';
 
             // Move diamond back down
             if (diamond) {
