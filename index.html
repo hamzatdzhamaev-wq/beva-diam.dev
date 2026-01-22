@@ -577,6 +577,7 @@
                 max-width: 100%;
                 max-height: none;
                 margin: 0;
+                margin-bottom: 20px;
                 overflow-y: visible !important;
                 overflow-x: hidden !important;
             }
@@ -638,9 +639,13 @@
             }
 
             .home-btn {
+                position: static;
+                transform: none;
                 padding: 15px 40px;
                 font-size: 11px;
-                bottom: 30px;
+                margin: 20px auto 30px auto;
+                display: block;
+                width: fit-content;
             }
 
             .checkbox-group {
@@ -677,10 +682,6 @@
             Hol dir JETZT dein Angebot
         </button>
     </div>
-
-    <button class="home-btn" style="opacity: 0; pointer-events: none;">
-        HOME
-    </button>
 
     <div class="content">
         <div class="form-container">
@@ -754,6 +755,10 @@
                 <button type="submit" class="submit-btn">Anfrage senden</button>
             </form>
         </div>
+
+        <button class="home-btn" style="opacity: 0; pointer-events: none;">
+            HOME
+        </button>
     </div>
 
     <script type="importmap">
