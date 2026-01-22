@@ -7,9 +7,15 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💎</text></svg>">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
         body {
             font-family: 'Segoe UI', sans-serif;
             overflow: hidden;
+            overflow-x: hidden;
             height: 100vh;
             width: 100vw;
             margin: 0;
@@ -22,6 +28,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
+            overflow: hidden;
         }
         canvas {
             display: block;
@@ -165,7 +172,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.6s ease;
-            overflow-y: hidden;
+            overflow: hidden !important;
         }
 
         .content.visible {
@@ -216,7 +223,8 @@
             width: 100%;
             max-width: 550px;
             max-height: calc(100vh - 40px);
-            overflow-y: hidden;
+            overflow-x: hidden !important;
+            overflow-y: hidden !important;
             position: relative;
             backdrop-filter: blur(3px) saturate(150%);
         }
@@ -301,9 +309,17 @@
             letter-spacing: 0.3px;
         }
 
+        form {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden !important;
+        }
+
         .form-group {
             margin-bottom: 12px;
             position: relative;
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
         label {
@@ -323,6 +339,7 @@
 
         input, textarea {
             width: 100%;
+            max-width: 100%;
             padding: 9px 12px;
             border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
@@ -333,6 +350,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 3px rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             color: white;
+            box-sizing: border-box;
         }
 
         input::placeholder, textarea::placeholder {
@@ -388,6 +406,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 6px;
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
         .checkbox-label {
