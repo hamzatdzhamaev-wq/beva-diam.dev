@@ -50,6 +50,161 @@
             opacity: 0.9;
         }
 
+        /* About Us Button */
+        .about-btn {
+            position: fixed;
+            top: 200px;
+            left: 85px;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px) saturate(180%);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow:
+                0 4px 16px rgba(98, 0, 234, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                inset 2px 2px 4px rgba(255, 255, 255, 0.1);
+            clip-path: polygon(
+                50% 5%,
+                90% 20%,
+                95% 50%,
+                90% 80%,
+                50% 95%,
+                10% 80%,
+                5% 50%,
+                10% 20%
+            );
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 45%,
+                rgba(255, 255, 255, 0.5) 50%,
+                rgba(255, 255, 255, 0.3) 55%,
+                rgba(255, 255, 255, 0) 100%);
+            transform: translateX(-100%) skewX(-15deg);
+            animation: glassReflection 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .about-btn:hover {
+            transform: scale(1.08);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow:
+                0 6px 24px rgba(98, 0, 234, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+                inset 4px 4px 8px rgba(255, 255, 255, 0.15);
+        }
+
+        /* About Modal */
+        .about-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            width: 90%;
+            max-width: 600px;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(98, 0, 234, 0.01) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 212, 255, 0.01) 0%, transparent 50%),
+                rgba(10, 10, 30, 0.25);
+            padding: 40px 45px;
+            border-radius: 24px;
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+                0 10px 40px rgba(98, 0, 234, 0.15);
+            backdrop-filter: blur(15px) saturate(150%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .about-modal.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .about-modal::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg,
+                rgba(98, 0, 234, 0.2), rgba(255, 255, 255, 0.3),
+                rgba(0, 212, 255, 0.2), rgba(255, 255, 255, 0.3),
+                rgba(142, 36, 170, 0.2));
+            background-size: 400% 400%;
+            border-radius: 24px;
+            z-index: -1;
+            animation: formShine 4s ease infinite;
+        }
+
+        .about-modal h2 {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #b830d1 50%, #6200ea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            filter: drop-shadow(0 2px 8px rgba(98, 0, 234, 0.4));
+        }
+
+        .about-modal p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: center;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-close:hover {
+            background: rgba(255, 0, 0, 0.3);
+            transform: rotate(90deg);
+        }
+
         /* Language Buttons */
         .language-switcher {
             position: fixed;
@@ -635,6 +790,36 @@
                 left: 20px;
             }
 
+            .about-btn {
+                top: 90px;
+                left: 20px;
+                padding: 8px 16px;
+                font-size: 10px;
+            }
+
+            .about-modal {
+                width: 95%;
+                padding: 30px 25px;
+            }
+
+            .about-modal h2 {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+
+            .about-modal p {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            .about-close {
+                width: 35px;
+                height: 35px;
+                font-size: 20px;
+                top: 15px;
+                right: 15px;
+            }
+
             .language-switcher {
                 top: 20px;
                 right: 20px;
@@ -680,10 +865,20 @@
 
     <img src="logo.png" alt="Logo" class="logo">
 
+    <button class="about-btn">
+        Über uns
+    </button>
+
     <div class="language-switcher">
         <button class="lang-btn active" data-lang="de">DE</button>
         <button class="lang-btn" data-lang="en">EN</button>
         <button class="lang-btn" data-lang="ru">RU</button>
+    </div>
+
+    <div class="about-modal">
+        <button class="about-close">×</button>
+        <h2>Über uns</h2>
+        <p>Beva Diamond ist Ihre digitale Agentur für professionelle Web- und Markenlösungen. Seit 2022 entwickeln wir maßgeschneiderte Websites, leistungsstarke Online-Shops und innovative Anwendungen, die Ihr Unternehmen digital voranbringen.<br><br>Von der ersten Idee bis zum finalen Launch – wir begleiten Sie mit durchdachten Konzepten, modernem Design und technischer Exzellenz. Ergänzend gestalten wir Logos und Branding-Strategien, die Ihrer Marke einen unverwechselbaren und konsistenten Auftritt verleihen.<br><br>Qualität, Zuverlässigkeit und schnelle Umsetzung – darauf können Sie bei uns zählen.</p>
     </div>
 
     <div style="position: fixed; bottom: 50px; left: 50%; transform: translateX(-50%); z-index: 1000;">
@@ -1183,6 +1378,12 @@
         init();
         animate();
 
+        // Show About button on initial load (Home view)
+        setTimeout(() => {
+            document.querySelector('.about-btn').style.opacity = '1';
+            document.querySelector('.about-btn').style.pointerEvents = 'all';
+        }, 500);
+
         // Button Click Animation
         document.querySelector('.floating-btn').addEventListener('click', (e) => {
             e.preventDefault();
@@ -1190,6 +1391,10 @@
             // Hide CTA button container, show HOME button
             e.target.parentElement.style.opacity = '0';
             e.target.parentElement.style.pointerEvents = 'none';
+
+            // Hide About button
+            document.querySelector('.about-btn').style.opacity = '0';
+            document.querySelector('.about-btn').style.pointerEvents = 'none';
 
             document.querySelector('.home-btn').style.opacity = '1';
             document.querySelector('.home-btn').style.pointerEvents = 'all';
@@ -1235,6 +1440,10 @@
 
             document.querySelector('.floating-btn').parentElement.style.opacity = '1';
             document.querySelector('.floating-btn').parentElement.style.pointerEvents = 'all';
+
+            // Show About button
+            document.querySelector('.about-btn').style.opacity = '1';
+            document.querySelector('.about-btn').style.pointerEvents = 'all';
 
             // Hide form
             document.querySelector('.content').classList.remove('visible');
@@ -1328,6 +1537,9 @@
         // Language Translations
         const translations = {
             de: {
+                aboutBtn: 'Über uns',
+                aboutTitle: 'Über uns',
+                aboutText: 'Beva Diamond ist Ihre digitale Agentur für professionelle Web- und Markenlösungen. Seit 2022 entwickeln wir maßgeschneiderte Websites, leistungsstarke Online-Shops und innovative Anwendungen, die Ihr Unternehmen digital voranbringen.<br><br>Von der ersten Idee bis zum finalen Launch – wir begleiten Sie mit durchdachten Konzepten, modernem Design und technischer Exzellenz. Ergänzend gestalten wir Logos und Branding-Strategien, die Ihrer Marke einen unverwechselbaren und konsistenten Auftritt verleihen.<br><br>Qualität, Zuverlässigkeit und schnelle Umsetzung – darauf können Sie bei uns zählen.',
                 floatingBtn: 'Hol dir JETZT dein Angebot',
                 homeBtn: 'HOME',
                 title: 'Webseite erstellen lassen',
@@ -1348,6 +1560,9 @@
                 successMsg: '✓ Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet.'
             },
             en: {
+                aboutBtn: 'About us',
+                aboutTitle: 'About us',
+                aboutText: 'Beva Diamond is your digital agency for professional web and brand solutions. Since 2022, we have been developing custom websites, powerful online shops, and innovative applications that drive your business forward digitally.<br><br>From the first idea to the final launch – we accompany you with well-thought-out concepts, modern design, and technical excellence. Additionally, we create logos and branding strategies that give your brand a distinctive and consistent presence.<br><br>Quality, reliability, and fast implementation – that\'s what you can count on with us.',
                 floatingBtn: 'Get your quote NOW',
                 homeBtn: 'HOME',
                 title: 'Create a Website',
@@ -1368,6 +1583,9 @@
                 successMsg: '✓ Thank you! Your request has been sent successfully.'
             },
             ru: {
+                aboutBtn: 'О нас',
+                aboutTitle: 'О нас',
+                aboutText: 'Beva Diamond — ваше цифровое агентство профессиональных веб- и брендинговых решений. С 2022 года мы разрабатываем индивидуальные веб-сайты, мощные интернет-магазины и инновационные приложения, которые продвигают ваш бизнес в цифровом пространстве.<br><br>От первой идеи до финального запуска — мы сопровождаем вас продуманными концепциями, современным дизайном и технической экспертизой. Кроме того, мы создаем логотипы и брендинговые стратегии, которые придают вашему бренду узнаваемый и последовательный образ.<br><br>Качество, надежность и быстрая реализация — на это вы можете рассчитывать с нами.',
                 floatingBtn: 'Получить предложение СЕЙЧАС',
                 homeBtn: 'ГЛАВНАЯ',
                 title: 'Создание сайта',
@@ -1394,6 +1612,13 @@
         function switchLanguage(lang) {
             currentLang = lang;
             const t = translations[lang];
+
+            // Update about button
+            document.querySelector('.about-btn').textContent = t.aboutBtn;
+
+            // Update about modal
+            document.querySelector('.about-modal h2').textContent = t.aboutTitle;
+            document.querySelector('.about-modal p').innerHTML = t.aboutText;
 
             // Update floating button
             document.querySelector('.floating-btn').textContent = t.floatingBtn;
@@ -1448,6 +1673,62 @@
                 const lang = btn.getAttribute('data-lang');
                 switchLanguage(lang);
             });
+        });
+
+        // About Us Modal functionality
+        const aboutBtn = document.querySelector('.about-btn');
+        const aboutModal = document.querySelector('.about-modal');
+        const aboutClose = document.querySelector('.about-close');
+
+        aboutBtn.addEventListener('click', () => {
+            // Hide About button
+            aboutBtn.style.opacity = '0';
+            aboutBtn.style.pointerEvents = 'none';
+
+            // Move diamond up
+            if (diamond) {
+                const moveUp = setInterval(() => {
+                    if (diamond.position.y < 2) {
+                        diamond.position.y += 0.05;
+                    } else {
+                        clearInterval(moveUp);
+                    }
+                }, 16);
+            }
+
+            // Show modal after a short delay
+            setTimeout(() => {
+                aboutModal.classList.add('visible');
+            }, 300);
+        });
+
+        aboutClose.addEventListener('click', () => {
+            // Hide modal
+            aboutModal.classList.remove('visible');
+
+            // Show About button again
+            setTimeout(() => {
+                aboutBtn.style.opacity = '1';
+                aboutBtn.style.pointerEvents = 'all';
+            }, 300);
+
+            // Move diamond back down
+            if (diamond) {
+                const moveDown = setInterval(() => {
+                    if (diamond.position.y > 0) {
+                        diamond.position.y -= 0.05;
+                    } else {
+                        clearInterval(moveDown);
+                    }
+                }, 16);
+            }
+        });
+
+        // Close modal when clicking outside
+        aboutModal.addEventListener('click', (e) => {
+            if (e.target === aboutModal) {
+                aboutClose.click();
+            }
         });
 
         // Scrolling is disabled on desktop, only enabled on mobile via CSS media queries
