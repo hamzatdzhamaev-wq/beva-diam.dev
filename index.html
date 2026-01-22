@@ -774,7 +774,7 @@
             }
 
             .form-container::before {
-                display: none;
+                display: block;
             }
 
             h1 {
@@ -831,6 +831,12 @@
             .about-modal {
                 width: 95%;
                 padding: 30px 25px;
+                background: rgba(10, 10, 30, 0.25);
+                backdrop-filter: blur(5px) saturate(120%);
+            }
+
+            .about-modal::before {
+                display: block;
             }
 
             .about-modal h2 {
