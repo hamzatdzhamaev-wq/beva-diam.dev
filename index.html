@@ -135,7 +135,7 @@
                 0 25px 70px rgba(0, 0, 0, 0.2),
                 0 0 0 1px rgba(255, 255, 255, 0.2) inset,
                 0 10px 40px rgba(98, 0, 234, 0.15);
-            backdrop-filter: blur(15px) saturate(150%);
+            backdrop-filter: blur(5px) saturate(120%);
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.5s ease;
@@ -791,10 +791,12 @@
             }
 
             .about-btn {
-                top: 90px;
-                left: 20px;
-                padding: 8px 16px;
-                font-size: 10px;
+                top: auto;
+                bottom: 140px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 12px 30px;
+                font-size: 11px;
             }
 
             .about-modal {
