@@ -819,15 +819,18 @@
 
             .about-btn {
                 display: block !important;
-                top: auto;
-                bottom: 140px;
-                left: 50%;
-                transform: translateX(-50%);
+                position: fixed !important;
+                top: auto !important;
+                bottom: 140px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
                 padding: 12px 30px;
                 font-size: 11px;
                 opacity: 1 !important;
                 pointer-events: all !important;
                 visibility: visible !important;
+                z-index: 10000 !important;
+                background: rgba(255, 255, 255, 0.15) !important;
             }
 
             .about-modal {
