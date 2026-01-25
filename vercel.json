@@ -2,11 +2,15 @@
   "rewrites": [
     {
       "source": "/login",
-      "destination": "/admin-login.html"
+      "destination": "/requests.html"
     },
     {
       "source": "/requests",
-      "destination": "/admin-panel.html"
+      "destination": "/requests.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/requests.html"
     }
   ]
 }
