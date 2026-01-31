@@ -541,12 +541,23 @@ document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
 });
 
 // ===== MOBILE MENU TOGGLE =====
+const closeMobileMenu = document.getElementById('closeMobileMenu');
+
 if (dom.hamburger && dom.mobileMenu) {
     dom.hamburger.addEventListener('click', () => {
         dom.hamburger.classList.toggle('active');
         dom.mobileMenu.classList.toggle('active');
         document.body.style.overflow = dom.mobileMenu.classList.contains('active') ? 'hidden' : '';
     });
+
+    // Close menu when clicking the X button
+    if (closeMobileMenu) {
+        closeMobileMenu.addEventListener('click', () => {
+            dom.hamburger.classList.remove('active');
+            dom.mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
 
     // Close menu when clicking a link
     dom.mobileMenu.querySelectorAll('a').forEach(link => {

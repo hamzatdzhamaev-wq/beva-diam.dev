@@ -350,6 +350,31 @@ body {
     transition: all 0.4s ease;
 }
 
+.mobile-menu-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 2rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    z-index: 1002;
+}
+
+.mobile-menu-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+    transform: rotate(90deg);
+}
+
 .mobile-menu.active {
     opacity: 1;
     visibility: visible;
