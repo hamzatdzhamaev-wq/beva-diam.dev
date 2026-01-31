@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Beva Diamond | Premium Web Development & Digital Solutions</title>
+    <meta name="description" content="Beva Diamond - Crafting premium digital experiences. Full-stack web development, UI/UX design, and digital strategy.">
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6366f1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="BevaDiam">
+
+    <!-- Apple iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BevaDiam">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="logo.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
+
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileColor" content="#6366f1">
+    <meta name="msapplication-TileImage" content="logo.png">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Watermark Logo -->
+    <div class="watermark-logo">
+        <img src="logo.png" alt="Beva Diamond Logo">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-diamond">◆</span>
+                <span class="logo-text">BEVA<span class="logo-accent">DIAM</span></span>
+            </a>
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link" data-i18n="nav_home">Home</a></li>
+                <li><a href="#expertise" class="nav-link" data-i18n="nav_expertise">Expertise</a></li>
+                <li><a href="#projects" class="nav-link" data-i18n="nav_projects">Projects</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a></li>
+            </ul>
+            <div class="language-switcher">
+                <button class="lang-btn">
+                    <span class="lang-current">DE</span>
+                    <span class="lang-arrow">▼</span>
+                </button>
+                <div class="lang-dropdown">
+                    <button onclick="changeLanguage('de')">DE</button>
+                    <button onclick="changeLanguage('en')">EN</button>
+                    <button onclick="changeLanguage('ru')">RU</button>
+                </div>
+            </div>
+            <a href="#contact" class="nav-cta" data-i18n="nav_cta">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu">
+        <ul class="mobile-nav-list">
+            <li><a href="#home" class="mobile-nav-link" data-i18n="nav_home">Home</a></li>
+            <li><a href="#expertise" class="mobile-nav-link" data-i18n="nav_expertise">Expertise</a></li>
+            <li><a href="#projects" class="mobile-nav-link" data-i18n="nav_projects">Projects</a></li>
+            <li><a href="#contact" class="mobile-nav-link" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+        <div class="mobile-actions">
+            <div class="mobile-lang">
+                <button onclick="changeLanguage('de')">DE</button>
+                <button onclick="changeLanguage('en')">EN</button>
+                <button onclick="changeLanguage('ru')">RU</button>
+            </div>
+            <a href="#contact" class="btn-primary mobile-cta" data-i18n="nav_cta">Get Started</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div id="container" class="diamond-container"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                <span data-i18n="hero_badge">Available for exclusive projects</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line" data-i18n="hero_title_line1">Crafting Digital</span>
+                <span class="title-line" data-i18n="hero_title_line2">Masterpieces</span>
+            </h1>
+            <p class="hero-subtitle" data-i18n="hero_subtitle">
+                Transforming visions into premium web experiences through
+                cutting-edge technology and unparalleled design excellence.
+            </p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn-primary">
+                    <span data-i18n="hero_btn_portfolio">View Portfolio</span>
+                    <span class="btn-icon">→</span>
+                </a>
+                <a href="#contact" class="btn-secondary">
+                    <span data-i18n="hero_btn_talk">Let's Talk</span>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="150">0</div>
+                    <div class="stat-label" data-i18n="hero_stat1_label">Projects Delivered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="98">0</div>
+                    <div class="stat-label" data-i18n="hero_stat2_label">Client Satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label" data-i18n="hero_stat3_label">Years Experience</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span data-i18n="hero_scroll">Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise" class="expertise">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="expertise_tag">EXPERTISE</span>
+                <h2 class="section-title" data-i18n="expertise_title">Mastering the Full Stack</h2>
+                <p class="section-subtitle" data-i18n="expertise_subtitle">
+                    Leveraging cutting-edge technologies to build scalable,
+                    performant, and beautiful digital solutions.
+                </p>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card" data-category="frontend">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 3H5C3.89543 3 3 3.89543 3 5V8M21 8V5C21 3.89543 20.1046 3 19 3H16M16 21H19C20.1046 21 21 20.1046 21 19V16M3 16V19C3 20.1046 3.89543 21 5 21H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title" data-i18n="expertise_frontend_title">Frontend Excellence</h3>
+                    <p class="card-description" data-i18n="expertise_frontend_desc">
+                        React, Vue.js, Next.js, TypeScript, Three.js, GSAP, Tailwind CSS
+                    </p>
+                    <div class="card-hover-effect"></div>
+                </div>
+
+                <div class="expertise-card" data-category="backend">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title" data-i18n="expertise_backend_title">Backend Architecture</h3>
+                    <p class="card-description" data-i18n="expertise_backend_desc">
+                        Node.js, Python, PostgreSQL, MongoDB, Redis, AWS, Docker
+                    </p>
+                    <div class="card-hover-effect"></div>
+                </div>
+
+                <div class="expertise-card" data-category="design">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title" data-i18n="expertise_design_title">UI/UX Design</h3>
+                    <p class="card-description" data-i18n="expertise_design_desc">
+                        Figma, Adobe XD, Responsive Design, Motion Design, Design Systems
+                    </p>
+                    <div class="card-hover-effect"></div>
+                </div>
+
+                <div class="expertise-card" data-category="optimization">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title" data-i18n="expertise_optimization_title">Performance Optimization</h3>
+                    <p class="card-description" data-i18n="expertise_optimization_desc">
+                        SEO, Core Web Vitals, Lighthouse, Bundle Optimization, CDN
+                    </p>
+                    <div class="card-hover-effect"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="services_tag">OUR SERVICES</span>
+                <h2 class="section-title" data-i18n="services_title">We create ANY type of website</h2>
+                <p class="section-subtitle" data-i18n="services_subtitle">
+                    Tailored solutions for your specific requirements.
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    </div>
+                    <h3 data-i18n="service_ecommerce">Online Shops / E-Commerce</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                    </div>
+                    <h3 data-i18n="service_blog">Blogs & Content Platforms</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22.01"></line><line x1="15" y1="22" x2="15" y2="22.01"></line><line x1="12" y1="22" x2="12" y2="22.01"></line><line x1="12" y1="2" x2="12" y2="4"></line><line x1="4" y1="10" x2="20" y2="10"></line><line x1="4" y1="14" x2="20" y2="14"></line><line x1="4" y1="18" x2="20" y2="18"></line></svg>
+                    </div>
+                    <h3 data-i18n="service_corporate">Corporate Websites</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    </div>
+                    <h3 data-i18n="service_portfolio">Portfolio Websites</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <h3 data-i18n="service_webapp">Web Apps</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg>
+                    </div>
+                    <h3 data-i18n="service_landing">Landing Pages</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+                    </div>
+                    <h3 data-i18n="service_saas">SaaS Platforms</h3>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                    </div>
+                    <h3 data-i18n="service_api">API Integrations</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Showcase -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-i18n="projects_tag">PORTFOLIO</span>
+                <h2 class="section-title" data-i18n="projects_title">Featured Work</h2>
+                <p class="section-subtitle" data-i18n="projects_subtitle">
+                    A selection of premium projects that showcase innovation and craftsmanship.
+                </p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card large">
+                    <div class="project-image">
+                        <img src="e-com.jpg" alt="Luxury Fashion Marketplace">
+                        <div class="project-gradient"></div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag" data-i18n="project1_tag">E-Commerce Platform</span>
+                        <h3 class="project-title" data-i18n="project1_title">Luxury Fashion Marketplace</h3>
+                        <p class="project-description" data-i18n="project1_desc">
+                            High-performance e-commerce platform with real-time inventory,
+                            AI-powered recommendations, and seamless checkout experience.
+                        </p>
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>PostgreSQL</span>
+                            <span>Stripe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="saas.png" alt="Analytics Dashboard">
+                        <div class="project-gradient" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.4) 0%, rgba(118, 75, 162, 0.4) 100%);"></div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag" data-i18n="project2_tag">SaaS Application</span>
+                        <h3 class="project-title" data-i18n="project2_title">Analytics Dashboard</h3>
+                        <p class="project-description" data-i18n="project2_desc">
+                            Real-time analytics platform with interactive data visualization.
+                        </p>
+                        <div class="project-tech">
+                            <span>Vue.js</span>
+                            <span>D3.js</span>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="web3.jpg" alt="NFT Marketplace">
+                        <div class="project-gradient" style="background: linear-gradient(135deg, rgba(240, 147, 251, 0.4) 0%, rgba(245, 87, 108, 0.4) 100%);"></div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag" data-i18n="project3_tag">Web3 Platform</span>
+                        <h3 class="project-title" data-i18n="project3_title">NFT Marketplace</h3>
+                        <p class="project-description" data-i18n="project3_desc">
+                            Decentralized marketplace for digital collectibles and art.
+                        </p>
+                        <div class="project-tech">
+                            <span>Next.js</span>
+                            <span>Web3.js</span>
+                            <span>Solidity</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <span class="section-tag" data-i18n="contact_tag">GET IN TOUCH</span>
+                    <h2 class="section-title" data-i18n="contact_title">Let's Create Something Extraordinary</h2>
+                    <p class="contact-description" data-i18n="contact_desc">
+                        Ready to transform your vision into reality? Let's discuss your next project
+                        and explore how we can create something exceptional together.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 8L10.89 13.26C11.5 13.67 12.5 13.67 13.11 13.26L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-label" data-i18n="contact_email_label">Email</div>
+                                <div class="contact-value" data-i18n="contact_email_value">hello@bevadiam.com</div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17.657 16.657L13.414 20.9C13.039 21.275 12.535 21.487 12.007 21.487C11.479 21.487 10.975 21.275 10.6 20.9L6.343 16.657C5.229 15.543 4.344 14.208 3.738 12.734C3.132 11.26 2.819 9.678 2.819 8.079C2.819 6.48 3.132 4.898 3.738 3.424C4.344 1.95 5.229 0.615 6.343 -0.499" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-label" data-i18n="contact_location_label">Location</div>
+                                <div class="contact-value" data-i18n="contact_location_value">Germany, Austria, Switzerland, Russia</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name" data-i18n="form_name">Name</label>
+                        <input type="text" id="name" data-i18n="form_name_placeholder" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-i18n="form_email">Email</label>
+                        <input type="email" id="email" data-i18n="form_email_placeholder" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" data-i18n="form_phone">Phone</label>
+                        <input type="tel" id="phone" data-i18n="form_phone_placeholder" placeholder="+1 234 567 890">
+                    </div>
+                    <div class="form-group">
+                        <label for="project" data-i18n="form_project">Project Type</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="project" value="webapp">
+                                <span class="checkbox-custom"></span>
+                                <span data-i18n="form_opt_webapp">Web Application</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="project" value="ecommerce">
+                                <span class="checkbox-custom"></span>
+                                <span data-i18n="form_opt_ecommerce">E-Commerce / Shop</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="project" value="corporate">
+                                <span class="checkbox-custom"></span>
+                                <span data-i18n="form_opt_corporate">Corporate Website</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="project" value="landing">
+                                <span class="checkbox-custom"></span>
+                                <span data-i18n="form_opt_landing">Landing Page</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="project" value="saas">
+                                <span class="checkbox-custom"></span>
+                                <span data-i18n="form_opt_saas">SaaS Platform</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="project" value="design">
+                                <span class="checkbox-custom"></span>
+                                <span data-i18n="form_opt_design">UI/UX Design</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="project" value="mobile">
+                                <span class="checkbox-custom"></span>
+                                <span data-i18n="form_opt_mobile">Mobile App</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="project" value="seo">
+                                <span class="checkbox-custom"></span>
+                                <span data-i18n="form_opt_seo">SEO & Performance</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="project" value="api">
+                                <span class="checkbox-custom"></span>
+                                <span data-i18n="form_opt_api">API Integration</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="project" value="consulting">
+                                <span class="checkbox-custom"></span>
+                                <span data-i18n="form_opt_consulting">Consulting & Strategy</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-i18n="form_message">Message</label>
+                        <textarea id="message" rows="4" data-i18n="form_message_placeholder" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary full-width">
+                        <span data-i18n="form_submit">Send Message</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <span class="logo-diamond">◆</span>
+                        <span class="logo-text">BEVA<span class="logo-accent">DIAM</span></span>
+                    </div>
+                    <p data-i18n="footer_tagline">Crafting premium digital experiences</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 data-i18n="footer_services">Services</h4>
+                        <ul>
+                            <li><a href="#" data-i18n="footer_service1">Web Development</a></li>
+                            <li><a href="#" data-i18n="footer_service2">UI/UX Design</a></li>
+                            <li><a href="#" data-i18n="footer_service3">Consulting</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-i18n="footer_connect">Connect</h4>
+                        <ul>
+                            <li><a href="#">GitHub</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer_copyright">&copy; 2026 BevaDiam. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top" aria-label="Back to Top">↑</a>
+
+    <!-- Social Media Floating Buttons -->
+    <div class="social-float-container">
+        <a href="https://www.instagram.com/beva.dev?igsh=djZlZ2hnZGIxMTlx"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="social-float instagram-float"
+           aria-label="Follow us on Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+        </a>
+        <a href="https://www.tiktok.com/@bevadiamond?_r=1&_t=ZN-93WvAXT1PXC"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="social-float tiktok-float"
+           aria-label="Follow us on TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- PWA Install Button -->
+    <div class="pwa-install-prompt" id="installPrompt">
+        <div class="pwa-install-content">
+            <button class="pwa-close" id="closeInstall" aria-label="Close">✕</button>
+            <div class="pwa-icon">
+                <img src="logo.png" alt="BevaDiam">
+            </div>
+            <div class="pwa-text">
+                <h3 data-i18n="pwa_install_title">Install App</h3>
+                <p data-i18n="pwa_install_desc">Get the best experience with our app</p>
+            </div>
+            <button class="pwa-install-btn" id="installBtn">
+                <span data-i18n="pwa_install_button">Install</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Offline Indicator -->
+    <div class="offline-indicator" id="offlineIndicator">
+        <span data-i18n="offline_message">You are offline</span>
+    </div>
+
+    <!-- Three.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+    <!-- Diamond Animation -->
+    <script src="diamond.js"></script>
+
+    <!-- Language System -->
+    <script src="languages.js"></script>
+
+    <!-- Main Interactions -->
+    <script src="main.js"></script>
+</body>
+</html>
