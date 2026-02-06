@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bevadiam.com/sitemap.xml
+Sitemap: https://www.beva-diam.dev/sitemap.xml

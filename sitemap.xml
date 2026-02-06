@@ -2,10 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
-        <loc>https://bevadiam.com/</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://bevadiam.com/?lang=de"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://bevadiam.com/?lang=en"/>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://bevadiam.com/?lang=ru"/>
+        <loc>https://www.beva-diam.dev/</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://www.beva-diam.dev/?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.beva-diam.dev/?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://www.beva-diam.dev/?lang=ru"/>
         <lastmod>2026-02-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
