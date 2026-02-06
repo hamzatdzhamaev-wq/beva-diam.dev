@@ -1,4 +1,4 @@
-// Vercel Serverless Function - GET endpoint to retrieve all requests
+// Vercel Serverless Function - PATCH endpoint to update request status
 import { neon } from '@neondatabase/serverless';
 
 export default async function handler(req, res) {
@@ -14,11 +14,23 @@ export default async function handler(req, res) {
         return;
     }
 
-    if (req.method !== 'GET') {
+    if (req.method !== 'PATCH') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
     try {
+        const { id, status } = req.body;
+
+        if (!id || !status) {
+            return res.status(400).json({ error: 'ID und Status sind erforderlich' });
+        }
+
+        // Validate status value
+        const validStatuses = ['new', 'in_progress', 'completed'];
+        if (!validStatuses.includes(status)) {
+            return res.status(400).json({ error: 'Ungültiger Status' });
+        }
+
         // Connect to the Neon database
         const sql = neon(process.env.DATABASE_URL);
 
@@ -29,24 +41,26 @@ export default async function handler(req, res) {
             // Column might already exist, ignore error
         }
 
-        // Get all requests
-        const requests = await sql`
-            SELECT id::text, name, email, phone, project_type, budget, start_date, description, timestamp,
-                   COALESCE(status, 'new') as status
-            FROM requests
-            ORDER BY timestamp DESC
+        // Update the request status
+        const result = await sql`
+            UPDATE requests
+            SET status = ${status}
+            WHERE id = ${parseInt(id)}
+            RETURNING id, status
         `;
+
+        if (result.length === 0) {
+            return res.status(404).json({ error: 'Anfrage nicht gefunden' });
+        }
 
         return res.status(200).json({
             success: true,
-            requests: requests
+            message: 'Status erfolgreich aktualisiert',
+            request: result[0]
         });
 
     } catch (error) {
-        console.error('Error reading requests:', error);
-        return res.status(200).json({
-            success: true,
-            requests: []
-        });
+        console.error('Error updating status:', error);
+        return res.status(500).json({ error: 'Serverfehler beim Aktualisieren des Status' });
     }
 }
