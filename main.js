@@ -582,8 +582,15 @@ styleSheet.textContent = `
 `;
 document.head.appendChild(styleSheet);
 
-// ===== INIT =====
+// ===== PAGE LOADER =====
 window.addEventListener('load', () => {
+    const loader = document.getElementById('pageLoader');
+    if (loader) {
+        // Small delay to ensure smooth transition
+        setTimeout(() => {
+            loader.classList.add('loaded');
+        }, 300);
+    }
     document.body.style.opacity = '1';
     console.log('%c Beva Diamond ', 'background: #6366f1; color: white; padding: 4px 8px; border-radius: 4px;', 'System initialized.');
 });
