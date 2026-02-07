@@ -1973,25 +1973,32 @@ body {
     }
 
     /* ===== MOBILE PERFORMANCE OPTIMIZATIONS ===== */
-    /* Reduce animations for better performance */
-    * {
-        animation-duration: 0.3s !important;
-        transition-duration: 0.2s !important;
-    }
 
-    /* Disable expensive animations on mobile */
+    /* Disable expensive hover animations on mobile (no hover on touch devices anyway) */
     .skill-card:hover,
     .project-card:hover,
-    .service-item:hover {
+    .service-item:hover,
+    .btn:hover,
+    .social-link:hover {
         transform: none !important;
     }
 
-    /* Remove will-change to reduce GPU usage */
-    * {
+    /* Remove will-change to reduce GPU usage - only on performance-heavy elements */
+    .skill-card,
+    .project-card,
+    .service-item,
+    .btn,
+    video {
         will-change: auto !important;
     }
 
-    /* Simplify animations */
+    /* Disable complex gradient animations that are GPU-intensive */
+    .hero::before,
+    .hero::after {
+        animation: none !important;
+    }
+
+    /* Simplify scroll-triggered animations - remove vertical movement, keep fade only */
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -2010,14 +2017,15 @@ body {
         }
     }
 
-    /* Disable complex gradient animations */
-    .hero::before,
-    .hero::after {
-        animation: none !important;
-    }
-
     /* Optimize video rendering */
     video {
         transform: none !important;
+    }
+
+    /* Faster transitions only for performance-heavy elements, not everything */
+    .project-card,
+    .skill-card,
+    .service-item {
+        transition-duration: 0.2s !important;
     }
 }
