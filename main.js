@@ -400,68 +400,74 @@ const resetTilt = (card) => {
     card.addEventListener('mouseleave', () => resetTilt(card));
 });
 
-// ===== PARTICLE SYSTEM (CANVAS) =====
-const particleCanvas = document.createElement('canvas');
-Object.assign(particleCanvas.style, {
-    position: 'fixed', top: '0', left: '0', width: '100%', height: '100%',
-    pointerEvents: 'none', zIndex: '9998'
-});
-document.body.appendChild(particleCanvas);
-const ctx = particleCanvas.getContext('2d');
+// ===== PARTICLE SYSTEM (CANVAS) - DESKTOP ONLY =====
+// Check if device is mobile (performance optimization)
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
 
-let particles = [];
-const resizeCanvas = () => {
-    particleCanvas.width = window.innerWidth;
-    particleCanvas.height = window.innerHeight;
-};
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
+if (!isMobile) {
+    const particleCanvas = document.createElement('canvas');
+    Object.assign(particleCanvas.style, {
+        position: 'fixed', top: '0', left: '0', width: '100%', height: '100%',
+        pointerEvents: 'none', zIndex: '9998'
+    });
+    document.body.appendChild(particleCanvas);
+    const ctx = particleCanvas.getContext('2d');
 
-class Particle {
-    constructor(y) {
-        this.x = Math.random() * window.innerWidth;
-        this.y = y || Math.random() * window.innerHeight;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedY = Math.random() * 2 - 1;
-        this.opacity = Math.random() * 0.5 + 0.2;
-        this.life = 1.0;
-    }
-    update() {
-        this.y -= this.speedY + 0.5; // Float upwards slightly
-        this.life -= 0.01;
-        this.opacity = this.life * 0.5;
-    }
-    draw() {
-        ctx.fillStyle = `rgba(99, 102, 241, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
+    let particles = [];
+    const resizeCanvas = () => {
+        particleCanvas.width = window.innerWidth;
+        particleCanvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-function spawnParticles(count, scrollY) {
-    for(let i=0; i<count; i++) {
-        // Spawn near bottom or based on scroll direction could be added
-        particles.push(new Particle(window.innerHeight + Math.random() * 100));
-    }
-}
-
-const animateParticles = () => {
-    ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
-    
-    // Filter in place to avoid garbage collection spikes
-    let i = particles.length;
-    while (i--) {
-        const p = particles[i];
-        p.update();
-        p.draw();
-        if (p.life <= 0) {
-            particles.splice(i, 1);
+    class Particle {
+        constructor(y) {
+            this.x = Math.random() * window.innerWidth;
+            this.y = y || Math.random() * window.innerHeight;
+            this.size = Math.random() * 2 + 0.5;
+            this.speedY = Math.random() * 2 - 1;
+            this.opacity = Math.random() * 0.5 + 0.2;
+            this.life = 1.0;
+        }
+        update() {
+            this.y -= this.speedY + 0.5; // Float upwards slightly
+            this.life -= 0.01;
+            this.opacity = this.life * 0.5;
+        }
+        draw() {
+            ctx.fillStyle = `rgba(99, 102, 241, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
         }
     }
-    requestAnimationFrame(animateParticles);
-};
-animateParticles();
+
+    window.spawnParticles = function(count, scrollY) {
+        for(let i=0; i<count; i++) {
+            particles.push(new Particle(window.innerHeight + Math.random() * 100));
+        }
+    };
+
+    const animateParticles = () => {
+        ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+
+        let i = particles.length;
+        while (i--) {
+            const p = particles[i];
+            p.update();
+            p.draw();
+            if (p.life <= 0) {
+                particles.splice(i, 1);
+            }
+        }
+        requestAnimationFrame(animateParticles);
+    };
+    animateParticles();
+} else {
+    // Empty function for mobile to prevent errors
+    window.spawnParticles = function() {};
+}
 
 // ===== FORM SUBMISSION =====
 const contactForm = document.querySelector('.contact-form');
@@ -594,3 +600,14 @@ window.addEventListener('load', () => {
     document.body.style.opacity = '1';
     console.log('%c Beva Diamond ', 'background: #6366f1; color: white; padding: 4px 8px; border-radius: 4px;', 'System initialized.');
 });
+
+// ===== MOBILE VIDEO OPTIMIZATION =====
+// Disable autoplay for videos on mobile devices to improve performance
+if (isMobile) {
+    const videos = document.querySelectorAll('.portfolio-video');
+    videos.forEach(video => {
+        video.removeAttribute('autoplay');
+        video.pause();
+        video.preload = 'none'; // Don't preload video data on mobile
+    });
+}

@@ -1971,4 +1971,53 @@ body {
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch;
     }
+
+    /* ===== MOBILE PERFORMANCE OPTIMIZATIONS ===== */
+    /* Reduce animations for better performance */
+    * {
+        animation-duration: 0.3s !important;
+        transition-duration: 0.2s !important;
+    }
+
+    /* Disable expensive animations on mobile */
+    .skill-card:hover,
+    .project-card:hover,
+    .service-item:hover {
+        transform: none !important;
+    }
+
+    /* Remove will-change to reduce GPU usage */
+    * {
+        will-change: auto !important;
+    }
+
+    /* Simplify animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Disable complex gradient animations */
+    .hero::before,
+    .hero::after {
+        animation: none !important;
+    }
+
+    /* Optimize video rendering */
+    video {
+        transform: none !important;
+    }
 }
