@@ -342,6 +342,7 @@ document.querySelectorAll('a, button, .project-card, .expertise-card, .service-c
 
 const animateCursor = () => {
     if (isTouchDevice() || dom.cursorCircles.length === 0) return;
+    if (document.hidden) { requestAnimationFrame(animateCursor); return; }
 
     // The first circle (leader) follows the mouse directly
     const leader = dom.cursorCircles[0];
@@ -444,12 +445,14 @@ if (!isMobile) {
     }
 
     window.spawnParticles = function(count, scrollY) {
+        if (particles.length >= 60) return;
         for(let i=0; i<count; i++) {
             particles.push(new Particle(window.innerHeight + Math.random() * 100));
         }
     };
 
     const animateParticles = () => {
+        if (document.hidden) { requestAnimationFrame(animateParticles); return; }
         ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
 
         let i = particles.length;

@@ -32,7 +32,7 @@ function createStarTexture() {
 
 function createStars() {
     const nearStarGeometry = new THREE.BufferGeometry();
-    const nearCount = 200;
+    const nearCount = 100;
     const nearPositions = new Float32Array(nearCount * 3);
 
     for (let i = 0; i < nearCount; i++) {
@@ -62,7 +62,7 @@ function createStars() {
     starParticles.push(nearStars);
 
     const farStarGeometry = new THREE.BufferGeometry();
-    const farCount = 1000;
+    const farCount = 500;
     const farPositions = new Float32Array(farCount * 3);
 
     for (let i = 0; i < farCount; i++) {
@@ -244,7 +244,7 @@ function init() {
         alpha: true
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 2.5;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -252,7 +252,7 @@ function init() {
 
     console.log('Three.js Diamond initialized successfully!');
 
-    const cubeRenderTarget = new THREE.WebGLCubeRenderTarget(256);
+    const cubeRenderTarget = new THREE.WebGLCubeRenderTarget(64);
     const cubeCamera = new THREE.CubeCamera(0.1, 1000, cubeRenderTarget);
     scene.add(cubeCamera);
 
@@ -406,6 +406,7 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
+    if (document.hidden) return;
 
     const time = Date.now() * 0.001;
 

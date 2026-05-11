@@ -54,31 +54,16 @@ self.addEventListener('fetch', (event) => {
   }
 
   event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        // Clone the response
-        const responseClone = response.clone();
-
-        // Cache the new response
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseClone);
-        });
-
-        return response;
-      })
-      .catch(() => {
-        // If network fails, try cache
-        return caches.match(event.request).then((cachedResponse) => {
-          if (cachedResponse) {
-            return cachedResponse;
-          }
-
-          // Return offline page if available
-          if (event.request.mode === 'navigate') {
-            return caches.match('/index.html');
-          }
-        });
-      })
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      return fetch(event.request).catch(() => {
+        if (event.request.mode === 'navigate') {
+          return caches.match('/index.html');
+        }
+      });
+    })
   );
 });
 
